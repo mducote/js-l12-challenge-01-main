@@ -9,12 +9,25 @@ const getImage = async function(){
     console.log(images);
     selectRandomImage(images);
 };
-getImage();
+
 const selectRandomImage = function(images){
     const randomIndex = Math.floor(Math.random() * images.length);
     //console.log(randomIndex);
     randomImage = images[randomIndex];
     //console.log(randomImage);
+    displayImage(randomImage);
 };
 
-const displayImage = function(){};
+const displayImage = function(randomImage){
+    const author = randomImage.author;
+    const imageAddress = randomImage.download_url;
+    const imageURL = randomImage.url;
+    authorSpan.innerText = author;
+    img.src = imageAddress;
+    img.alt = `Image by ${author} from ${imageURL}`;
+    imgDiv.classList.remove("hide");
+};
+
+button.addEventListener("click", function(){
+    getImage();
+});
